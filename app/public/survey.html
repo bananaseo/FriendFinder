@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>FriendFinder</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+    <!--Jumbotron-->
+    <div class="container">
+        <div class="jumbotron">
+        
+            <h1><i class="far fa-eye"></i>FriendFinder</h1>
+            <p class="lead">Find your match!</p>
+            <hr class="my-4">
+                
+            <a class="btn btn-info btn-lg" id= "survey-button" href="/" role="button"><i class="fas fa-home"></i> Home</a>
+        </div>
+
+       
+    </div>
+
+    <!--survey-->
+    <div class="container">
+        <h3><u>About You</u></h3>
+        </br>
+        <h5>Name</h5>
+        <input type="text" id="name" class="form-control" required>
+
+        <h5>Link to Photo</h5>
+        <input type="text" id="photo" class="form-control" required>
+        </br>
+        <h3><u>Survey Questions</u></h3>
+        </br>
+        <ol>
+            <li>How much do you like sleeping?</li>
+            <select id="sleeping">
+                <option value=1>1</option>
+                <option value=2>2</option>
+                <option value=3>3</option>
+                <option value=4>4</option>
+                <option value=5>5</option>
+            </select>
+            <li>How much do you like eating?</li>
+            <select id="eating">
+                <option value=1>1</option>
+                <option value=2>2</option>
+                <option value=3>3</option>
+                <option value=4>4</option>
+                <option value=5>5</option>
+            </select>
+            <li>How much do you like reading?</li>
+            <select id="reading">
+                <option value=1>1</option>
+                <option value=2>2</option>
+                <option value=3>3</option>
+                <option value=4>4</option>
+                <option value=5>5</option>
+            </select>
+            <li>How much do you crave attention?</li>
+            <select id="attention">
+                <option value=1>1</option>
+                <option value=2>2</option>
+                <option value=3>3</option>
+                <option value=4>4</option>
+                <option value=5>5</option>
+            </select>
+            <li>How much do you spend time coding?</li>
+            <select id="coding">
+                <option value=1>1</option>
+                <option value=2>2</option>
+                <option value=3>3</option>
+                <option value=4>4</option>
+                <option value=5>5</option>
+            </select>
+        </ol>
+        <div class="text-right">
+                <button type="submit" class="btn btn-info btn-lg" id="add-btn"><span class="fas fa-user"></span> Add Your Info</button>
+        </div>
+    </div>
+    
+    <!--nav bar-->
+    <div class="container">
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link active" href="/api/friends">API Friends List</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="https://github.com/bananaseo/FriendFinder">GitHub Repo</a>
+            </li>
+        </ul>
+    </div>
+
+    <!--submit button-->
+    <script type="text/javascript">
+        $("#submit-button").on("click",function(event){
+            event.preventDefault(); 
+            var newProfile = {
+                name:$("#name").val().trim(),
+                photo:$("#photo").val().trim(),
+                sleeping:$("#sleeping").val().trim(),
+                eating:$("#eating").val().trim(),
+                reading:$("#reading").val().trim(),
+                attention:$("#attention").val().trim(),
+                coding:$("#coding").val().trim()
+                
+            }; 
+
+            $.post("/api/profiles", newProfile)
+                .then(function(data) {
+                    console.log(data); 
+                    alert("Added profile"); 
+                })
+
+
+        }); 
+
+    </script>
+    
+</body>
+</html>
