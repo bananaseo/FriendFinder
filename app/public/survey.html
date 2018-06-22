@@ -101,20 +101,25 @@
 
     <!--submit button-->
     <script type="text/javascript">
-        $("#submit-button").on("click",function(event){
+        $("#add-btn").on("click",function(event){
             event.preventDefault(); 
             var newProfile = {
                 name:$("#name").val().trim(),
                 photo:$("#photo").val().trim(),
-                sleeping:$("#sleeping").val().trim(),
-                eating:$("#eating").val().trim(),
-                reading:$("#reading").val().trim(),
-                attention:$("#attention").val().trim(),
-                coding:$("#coding").val().trim()
+                scores: [
+                $("#sleeping").val().trim(),
+                $("#eating").val().trim(),
+                $("#reading").val().trim(),
+                $("#attention").val().trim(),
+                $("#coding").val().trim()
+                ]
+                
                 
             }; 
 
-            $.post("/api/profiles", newProfile)
+            console.log(newProfile); 
+
+            $.post("/api/friends", newProfile)
                 .then(function(data) {
                     console.log(data); 
                     alert("Added profile"); 

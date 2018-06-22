@@ -1,7 +1,7 @@
 //Link routes to "data" source
 var friendlist = require("../data/friend")
 
-//apiRoutes- 2 Routes
+//APIRoutes- 2 Routes
 
 module.exports = function(app) {
 
